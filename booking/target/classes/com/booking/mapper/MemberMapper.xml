@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.booking.mapper.MemberMapper">
+	
+	<insert id="insertMember">
+		INSERT INTO MEMBER(ID,PW,NAME,PHONE,EMAIL,ADDRESS,DETAILADDR,POSTCODE)
+    	VALUES(#{id},#{pw},#{name},#{phone},#{email},#{address},#{detailaddr},#{postcode})
+	</insert>
+	
+	<resultMap type="member" id="memberMap">
+		<id property="id" column="id"/>
+		<result property="id" column="id"/>
+		<result property="pw" column="pw"/>
+		<result property="name" column="name"/>
+		<result property="phone" column="phone"/>
+		<result property="email" column="email"/>
+		<result property="address" column="address"/>
+		<result property="detailaddr" column="detailaddr"/>
+		<result property="postcode" column="postcode"/>
+		<result property="noshow" column="noshow"/>
+		<result property="joindate" column="joindate"/>
+		<result property="udtdate" column="utddate"/>
+		<result property="enabled" column="enabled"/>
+		<collection property="authList" resultMap="authMap"/>
+	</resultMap>
+	
+	<resultMap type="auth" id="authMap">
+		<result property="id" column="id"/>
+		<result property="auth" column="auth"/>
+	</resultMap>
+	
+	
+	<select id="read" resultMap="memberMap" >
+		SELECT *
+		FROM MEMBER
+		JOIN AUTH
+		USING(ID)
+		WHERE ID = #{id}
+	</select>
+	
+	
+	<update id="updateMember">
+		UPDATE MEMBER SET
+	    PW = #{pw},
+	    PHONE = #{phone},
+	    EMAIL = #{email},
+	    ADDRESS = #{address},
+	    DETAILADDR = #{detailaddr},
+	    POSTCODE = #{postcode}
+		WHERE ID = #{id}
+	</update>
+	
+	<delete id="deleteMember">
+		DELETE MEMBER WHERE ID = #{id}
+	</delete>
+	
+	<insert id="insertAuth">
+		INSERT INTO AUTH VALUES(#{id},#{auth})
+	</insert>
+	
+	<update id="updateAuth">
+		UPDATE AUTH SET
+			AUTH = #{auth}
+		WHERE ID = #{id}
+	</update>
+	
+	<delete id="deleteAuth">
+		DELETE AUTH WHERE ID = #{id}
+	</delete>
+	
+	<select id="chkid" parameterType="String" resultType="int">
+      SELECT COUNT(ID) FROM MEMBER
+      WHERE ID = #{id}
+	</select>
+	
+	<update id="updateType">
+		UPDATE MEMBER SET
+	    TYPE = #{type}
+		WHERE ID = #{id}
+	</update>
+	
+	<select id="auth">
+		SELECT * FROM AUTH
+		WHERE ID = #{id}
+	</select>
+</mapper>

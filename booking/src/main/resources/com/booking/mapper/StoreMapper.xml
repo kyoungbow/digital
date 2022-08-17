@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.booking.mapper.StoreMapper">
+	
+	<insert id="insertStore">
+		INSERT INTO STORE (ST_CODE,ST_ID,ST_NAME,ST_CONTENT,ST_TEL,ST_ADDR,ST_DETAILADDR,ST_CAT,ST_OPEN,ST_CLOSE) VALUES 
+		(#{st_code},#{st_id},#{st_name},#{st_content},#{st_tel},#{st_addr},#{st_detailaddr},#{st_cat},#{st_open},#{st_close})
+	</insert>
+	
+	<select id="read" resultType="store">
+		SELECT * FROM STORE WHERE ST_ID = #{st_id}
+	</select>
+	
+	
+	
+</mapper>
