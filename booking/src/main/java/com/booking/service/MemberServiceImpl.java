@@ -1,6 +1,5 @@
 package com.booking.service;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -9,8 +8,10 @@ import com.booking.domain.MemberVO;
 import com.booking.mapper.MemberMapper;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j;
 
 @Service @AllArgsConstructor
+@Log4j
 public class MemberServiceImpl implements MemberService{
 	private MemberMapper membermapper;
 	private PasswordEncoder password;
@@ -50,6 +51,7 @@ public class MemberServiceImpl implements MemberService{
 		
 		if(member.getPw() != null && !member.getPw().equals("")){
 			member.setPw(password.encode(member.getPw()));
+			
 		} 
 		return membermapper.updateMember(member) > 0;
 	}

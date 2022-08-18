@@ -13,6 +13,7 @@ public interface StoreMapper {
 	
 	int deleteStore(String st_code);
 	
-	List<StoreVO> getList(String id);
+	List<StoreVO> getList(String st_id);
 	
+	public int chkCode(String st_code);
 }

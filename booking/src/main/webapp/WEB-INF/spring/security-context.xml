@@ -17,7 +17,7 @@
 	
 	<security:intercept-url pattern="/member/customer" access="hasRole('ROLE_MEMBER')"/>
 	
-	<security:intercept-url pattern="/member/manager" access="hasRole('ROLE_MANAGER')"/>
+	<security:intercept-url pattern="/store/getStore" access="hasRole('ROLE_MANAGER')"/>
 	
 	<security:intercept-url pattern="/member/admin" access="hasRole('ROLE_ADMIN')"/>
 	

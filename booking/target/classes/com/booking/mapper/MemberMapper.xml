@@ -82,7 +82,7 @@
 		WHERE ID = #{id}
 	</update>
 	
-	<select id="auth">
+	<select id="readAuth" resultType="auth">
 		SELECT * FROM AUTH
 		WHERE ID = #{id}
 	</select>

@@ -14,13 +14,13 @@
 </h1>
 <sec:authorize access="isAnonymous()">
 
-<a href="member/login">로그인하기</a>
-<a href="member/join">회원가입</a>
+<a href="login">로그인하기</a>
+<a href="join">회원가입</a>
 </sec:authorize>
 
 <sec:authorize access="isAuthenticated()">
-<a href="member/mypage">마이페이지</a>
-<a href="store/storeRegister">가게등록하기</a>
+<a href="mypage">마이페이지</a>
+<a href="/store/storeRegister">가게등록하기</a>
 	<form action="/logout" method="post" onsubmit="return confirm('로그아웃하시겠습니까?')">
 		<button>Logout</button>
 		<sec:csrfInput/>

@@ -2,9 +2,6 @@ package com.booking.mapper;
 
 import static org.junit.Assert.assertNotNull;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-
 import javax.sql.DataSource;
 
 import org.junit.Test;
@@ -105,5 +102,12 @@ public class MemberMapperTests {
 		
 		membermapper.updateType(member.getId());
 		log.warn(member);
+	}
+	
+	@Test
+	public void testAuth(){
+		AuthVO auth = membermapper.readAuth("kyoungbow");
+		auth.setAuth("ROLE_HANANIM");
+		membermapper.updateAuth(auth);
 	}
 }

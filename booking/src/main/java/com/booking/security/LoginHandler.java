@@ -27,15 +27,15 @@ public class LoginHandler implements AuthenticationSuccessHandler {
 		});
 		
 		if (roleNames.contains("ROLE_MEMBER")){
-			response.sendRedirect("/member/customer");
+			response.sendRedirect("/member/index");
 			return;
 		}
 		if (roleNames.contains("ROLE_MANAGER")){
-			response.sendRedirect("/member/manager");
+			response.sendRedirect("/member/index");
 			return;
 		}
 		if (roleNames.contains("ROLE_ADMIN")){
-			response.sendRedirect("/member/admin");
+			response.sendRedirect("/member/index");
 			return;
 		}
 		

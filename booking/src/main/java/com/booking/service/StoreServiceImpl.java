@@ -31,11 +31,11 @@ public class StoreServiceImpl implements StoreService {
 	public void register(StoreVO store) {
 		storemapper.insertStore(store);
 		MemberVO member = membermapper.read(store.getSt_id());
+		member.setType("1");
+		membermapper.updateType(member.getId());
 		AuthVO authVO = membermapper.readAuth(store.getSt_id());
 		authVO.setAuth("ROLE_MANAGER");
-		member.setType("1");
 		membermapper.updateAuth(authVO);
-		membermapper.updateType(member.getId());
 	}
 
 	@Override
@@ -48,6 +48,12 @@ public class StoreServiceImpl implements StoreService {
 	public boolean deleteStore(StoreVO store) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public int chkCode(String st_code) {
+		int cnt = storemapper.chkCode(st_code);
+		return cnt;
 	}
 
 }

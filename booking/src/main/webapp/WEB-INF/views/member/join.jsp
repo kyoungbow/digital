@@ -51,6 +51,16 @@
 		<div>
 			<label>이메일</label>
 			<input type="text" id="email" name="email" >
+			<select name="email2" id="email2">
+				<option>@naver.com</option>
+				<option>@daum.net</option>
+				<option>@gmail.com</option>
+				<option>@hanmail.com</option>
+				<option>@yahoo.co.kr</option>
+			</select>
+			<button type="button" id="chkEmail">이메일인증</button>
+			<input class="mail-check-input" placeholder="인증번호 6자리를 입력해주세요!" disabled="disabled">
+			<span id="mail-check-warn"></span>
 		</div>
 		<div>
 			<label>주소</label>
@@ -70,6 +80,21 @@
 	
 	
 	<script>
+	$("#chkEmail").click(function () {
+		var email = $("#email1").val() + $("#email2").val();
+		var chkInput = $(".mail-check-input");
+		
+		$.ajax({
+			type:'get',
+			url:"/member/chkMail" + email,
+			success : function (data) {
+				checkInput.attr('disabled',false);
+				code =data;
+				alert('인증번호가 전송되었습니다.')
+			}
+		})
+	})
+	
 	$("#chkid").click(function() {
 		
 		var id = $("#id").val();

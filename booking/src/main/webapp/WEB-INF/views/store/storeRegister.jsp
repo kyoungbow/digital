@@ -34,6 +34,8 @@
 			<label>사업장 등록 번호</label>
 			<br>
 			<input type="text" id="st_code" name="st_code" placeholder="사업장 등록 번호 입력하세요">
+			<button type="button" id="chkCode">중복체크</button>
+			
 		</div>
 		<div>
 			<label>가게 이름</label >
@@ -79,6 +81,37 @@
 	
 	
 	<script>
+	
+$("#chkCode").click(function() {
+		
+		var st_code = $("#st_code").val();
+		
+		$.ajax({
+			url:"/store/chkCode",
+			type:"POST",
+			data:{st_code:st_code},
+			dataType:"json",
+			success:function(cnt){
+				if(cnt == 0){
+					console.log("가능")
+					console.log(cnt)
+					$("#st_name").focus();
+					alert("가입 가능한 사업자 등록 번호입니다..")
+				} else {
+					console.log("불가능")
+					console.log(cnt);
+					$("#st_code").focus();
+					alert("중복 사업자 등록 번호입니다.")
+					return false;
+				}
+			}, error:function(error) {
+				alert("에러발생")
+				console.log(error)
+			}
+			
+		})
+	})
+	
 function storeRegister(){
 		
 		var register = true;

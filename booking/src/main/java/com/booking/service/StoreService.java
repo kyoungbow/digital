@@ -12,4 +12,5 @@ public interface StoreService {
 	
 	boolean deleteStore(StoreVO store);
 	
+	public int chkCode(String st_code);
 }

@@ -53,8 +53,7 @@
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 	</div>
 	<c:if test="${pcp.username eq member.id}">
-	<a href="modify">수정</a>
-	
+	<button type="submit">수정</button>
 	</c:if>
 	</form>
 	</sec:authorize>

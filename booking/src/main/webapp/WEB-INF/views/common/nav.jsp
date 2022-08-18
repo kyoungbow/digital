@@ -9,6 +9,8 @@
 
 <header>
 	<h1 class="navheader">
-		<a href="/">오늘 뭐 먹지?</a>
+		<sec:authorize access="isAuthenticated()">
+			<a href="/member/index">오늘 뭐 먹지?</a>
+		</sec:authorize>
 	</h1>
 </header>

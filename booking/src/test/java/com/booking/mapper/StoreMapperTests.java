@@ -51,7 +51,7 @@ public class StoreMapperTests {
 	
 	@Test
 	public void read(){
-		StoreVO store = storemapper.read("kyoungbow");
+		StoreVO store = storemapper.read("kyoungbow2");
 		log.warn(store);
 	}
 	

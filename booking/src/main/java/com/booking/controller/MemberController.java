@@ -52,6 +52,12 @@ public class MemberController {
 		
 	}
 	
+	@GetMapping("index")
+	public void index(Principal principal, Model model){
+		MemberVO mem = memberservice.get(principal.getName());
+		model.addAttribute("member", mem);
+	}
+	
 	@GetMapping("join")
 	public void join(){
 		
@@ -59,8 +65,8 @@ public class MemberController {
 	
 	@PostMapping("join")
 	public String join(MemberVO member){
-		log.warn(member.getAuthList());
-		log.info(member);
+		log.warn("AuthList = "+ member.getAuthList());
+		log.info("member=" + member);
 		memberservice.join(member);
 
 		return "redirect:/member/login";
@@ -99,7 +105,7 @@ public class MemberController {
 	@PreAuthorize("principal.username == #member.id")
 	@PostMapping("mypage")
 	public String modifyMember(RedirectAttributes rttr, MemberVO member){
-		
+		log.info("membermodify=" + member);
 		if(memberservice.modifyMember(member)) {			
 			rttr.addFlashAttribute("result", "수정");
 		}
@@ -107,5 +113,9 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	
+//	@GetMapping("chkEmail")
+//	@ResponseBody
+//	public String chkEmail(String email){
+//		return email;
+//	}
 }
